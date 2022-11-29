@@ -17,11 +17,9 @@ def test(request):
         score = 0
         wrong = 0
         correct = 0
-        total = 0
         no_answer = 0
         for q in questions:
             if q.is_valid:
-                total += 1
                 answer = q.answer
                 question = request.POST.get(q.question)
                 print(request.POST.get(q.question))
