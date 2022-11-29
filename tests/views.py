@@ -11,26 +11,25 @@ def index(request):
 
 @login_required(login_url='/accounts/login')
 def test(request):
+    questions = Test.objects.filter(is_valid=True).order_by('?')[:5]
     if request.method == 'POST':
         print(request.POST)
-        questions = Test.objects.all()
         score = 0
         wrong = 0
         correct = 0
         no_answer = 0
         for q in questions:
-            if q.is_valid:
-                answer = q.answer
-                question = request.POST.get(q.question)
-                print(request.POST.get(q.question))
-                print(q.answer)
-                if answer == question:
-                    score += 10
-                    correct += 1
-                elif question is None:
-                    no_answer += 1
-                else:
-                    wrong += 1
+            answer = q.answer
+            question = request.POST.get(q.question)
+            print(request.POST.get(q.question))
+            print(q.answer)
+            if answer == question:
+                score += 10
+                correct += 1
+            elif question is None:
+                no_answer += 1
+            else:
+                wrong += 1
         context = {
             'score': score,
             'correct': correct,
@@ -39,7 +38,6 @@ def test(request):
         }
         return render(request, 'tests/total.html', context)
     else:
-        questions = Test.objects.all()
         context = {
             'questions': questions
         }
