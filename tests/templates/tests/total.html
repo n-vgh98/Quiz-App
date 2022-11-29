@@ -1,0 +1,15 @@
+{% extends '_base.html'%}
+{%block title%} test page {% endblock %}
+{% load static %}
+
+ {% block content %}
+
+<div class="container">
+                <h5 class="card-title">Score: {{score}}</h5>
+                <p class="card-text">Correct answers: {{correct}}</p>
+                <p class="card-text">Incorrect answers: {{wrong}}</p>
+                <p class="card-text">not answer: {{no_answer}}</p>
+
+
+</div>
+{% endblock %}

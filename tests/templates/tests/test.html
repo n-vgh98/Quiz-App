@@ -1,0 +1,50 @@
+{% extends '_base.html'%}
+{%block title%} test page {% endblock %}
+{% load static %}
+
+ {% block content %}
+
+<div class="container ">
+<h1>Welcome!</h1>
+
+ <form method='post' action="">
+    {% csrf_token %}
+    {% for q  in questions%}
+     {% if q.is_valid%}
+    <div class="form-group">
+      <label for="question">{{q.question}}</label>
+    </div>
+    <div class="form-check">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="{{q.question}}" id="option1" value="{{q.option1}}">
+            <label class="form-check-label" for="option1">
+                {{q.option1}}
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="{{q.question}}" id="option2" value="{{q.option2}}">
+            <label class="form-check-label" for="option2">
+                {{q.option2}}
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="{{q.question}}" id="option3" value="{{q.option3}}">
+            <label class="form-check-label" for="option3">
+                {{q.option3}}
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="{{q.question}}" id="option4" value="{{q.option4}}">
+            <label class="form-check-label" for="option4">
+                {{q.option4}}
+            </label>
+        </div>
+        <br>
+    </div>
+     {% endif %}
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+</div>
+{% endblock %}
